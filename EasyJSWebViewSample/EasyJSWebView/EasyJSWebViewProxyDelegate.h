@@ -15,4 +15,5 @@
 
 - (void) addJavascriptInterfaces:(NSObject*) interface WithName:(NSString*) name;
 
+- (void)injectJS:(UIWebView*)webView;
 @end

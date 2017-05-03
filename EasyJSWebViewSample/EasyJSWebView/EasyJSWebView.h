@@ -17,4 +17,5 @@
 - (void) initEasyJS;
 - (void) addJavascriptInterfaces:(NSObject*) interface WithName:(NSString*) name;
 
+- (void) injectJS;
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80440C8A1EB9C25500DE737F /* NSObject+JSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 80440C831EB9C25500DE737F /* NSObject+JSContext.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		80440C8B1EB9C25500DE737F /* XQUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80440C861EB9C25500DE737F /* XQUIWebViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		80440C8C1EB9C25500DE737F /* XQJSInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 80440C891EB9C25500DE737F /* XQJSInterface.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		80440C901EB9C62500DE737F /* xq_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 80440C8F1EB9C62500DE737F /* xq_test.html */; };
 		B56DD5EE16AAE68C00AD40F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56DD5ED16AAE68C00AD40F3 /* UIKit.framework */; };
 		B56DD5F016AAE68C00AD40F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56DD5EF16AAE68C00AD40F3 /* Foundation.framework */; };
 		B56DD5F216AAE68C00AD40F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56DD5F116AAE68C00AD40F3 /* CoreGraphics.framework */; };
@@ -16,17 +20,21 @@
 		B56DD60016AAE68C00AD40F3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B56DD5FF16AAE68C00AD40F3 /* Default.png */; };
 		B56DD60216AAE68C00AD40F3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B56DD60116AAE68C00AD40F3 /* Default@2x.png */; };
 		B56DD60416AAE68C00AD40F3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B56DD60316AAE68C00AD40F3 /* Default-568h@2x.png */; };
-		B56DD60716AAE68C00AD40F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B56DD60616AAE68C00AD40F3 /* ViewController.m */; };
-		B56DD60A16AAE68C00AD40F3 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56DD60816AAE68C00AD40F3 /* ViewController_iPhone.xib */; };
 		B56DD61916AAE6D700AD40F3 /* easyjs-inject.js in Sources */ = {isa = PBXBuildFile; fileRef = B56DD61416AAE6D700AD40F3 /* easyjs-inject.js */; };
 		B56DD61A16AAE6D700AD40F3 /* EasyJSWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = B56DD61616AAE6D700AD40F3 /* EasyJSWebView.m */; };
 		B56DD61B16AAE6D700AD40F3 /* EasyJSWebViewProxyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56DD61816AAE6D700AD40F3 /* EasyJSWebViewProxyDelegate.m */; };
-		B56DD61D16AAE73500AD40F3 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = B56DD61C16AAE73500AD40F3 /* test.html */; };
-		B56DD62016AAE7A300AD40F3 /* MyJSInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = B56DD61F16AAE7A200AD40F3 /* MyJSInterface.m */; };
 		FAFC6E1816AD815200DFE50D /* EasyJSDataFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFC6E1716AD815200DFE50D /* EasyJSDataFunction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		80440C821EB9C25500DE737F /* NSObject+JSContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSContext.h"; sourceTree = "<group>"; };
+		80440C831EB9C25500DE737F /* NSObject+JSContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSContext.m"; sourceTree = "<group>"; };
+		80440C851EB9C25500DE737F /* XQUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQUIWebViewController.h; sourceTree = "<group>"; };
+		80440C861EB9C25500DE737F /* XQUIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XQUIWebViewController.m; sourceTree = "<group>"; };
+		80440C881EB9C25500DE737F /* XQJSInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQJSInterface.h; sourceTree = "<group>"; };
+		80440C891EB9C25500DE737F /* XQJSInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XQJSInterface.m; sourceTree = "<group>"; };
+		80440C8E1EB9C29600DE737F /* UtilsMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacro.h; sourceTree = "<group>"; };
+		80440C8F1EB9C62500DE737F /* xq_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = xq_test.html; sourceTree = "<group>"; };
 		B56DD5E916AAE68C00AD40F3 /* EasyJSWebViewSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyJSWebViewSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56DD5ED16AAE68C00AD40F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B56DD5EF16AAE68C00AD40F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,17 +48,11 @@
 		B56DD5FF16AAE68C00AD40F3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		B56DD60116AAE68C00AD40F3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B56DD60316AAE68C00AD40F3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		B56DD60516AAE68C00AD40F3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B56DD60616AAE68C00AD40F3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B56DD60916AAE68C00AD40F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		B56DD61416AAE6D700AD40F3 /* easyjs-inject.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "easyjs-inject.js"; sourceTree = "<group>"; };
 		B56DD61516AAE6D700AD40F3 /* EasyJSWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyJSWebView.h; sourceTree = "<group>"; };
 		B56DD61616AAE6D700AD40F3 /* EasyJSWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyJSWebView.m; sourceTree = "<group>"; };
 		B56DD61716AAE6D700AD40F3 /* EasyJSWebViewProxyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyJSWebViewProxyDelegate.h; sourceTree = "<group>"; };
 		B56DD61816AAE6D700AD40F3 /* EasyJSWebViewProxyDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyJSWebViewProxyDelegate.m; sourceTree = "<group>"; };
-		B56DD61C16AAE73500AD40F3 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
-		B56DD61E16AAE7A200AD40F3 /* MyJSInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyJSInterface.h; sourceTree = "<group>"; };
-		B56DD61F16AAE7A200AD40F3 /* MyJSInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyJSInterface.m; sourceTree = "<group>"; };
 		FAFC6E1616AD815200DFE50D /* EasyJSDataFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyJSDataFunction.h; sourceTree = "<group>"; };
 		FAFC6E1716AD815200DFE50D /* EasyJSDataFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyJSDataFunction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +71,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80440C801EB9C25500DE737F /* XQ */ = {
+			isa = PBXGroup;
+			children = (
+				80440C8D1EB9C29600DE737F /* Macro */,
+				80440C811EB9C25500DE737F /* Category */,
+				80440C841EB9C25500DE737F /* Controller */,
+				80440C871EB9C25500DE737F /* Operation */,
+			);
+			path = XQ;
+			sourceTree = "<group>";
+		};
+		80440C811EB9C25500DE737F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				80440C821EB9C25500DE737F /* NSObject+JSContext.h */,
+				80440C831EB9C25500DE737F /* NSObject+JSContext.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		80440C841EB9C25500DE737F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				80440C851EB9C25500DE737F /* XQUIWebViewController.h */,
+				80440C861EB9C25500DE737F /* XQUIWebViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		80440C871EB9C25500DE737F /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				80440C881EB9C25500DE737F /* XQJSInterface.h */,
+				80440C891EB9C25500DE737F /* XQJSInterface.m */,
+			);
+			path = Operation;
+			sourceTree = "<group>";
+		};
+		80440C8D1EB9C29600DE737F /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				80440C8E1EB9C29600DE737F /* UtilsMacro.h */,
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
 		B56DD5DE16AAE68C00AD40F3 = {
 			isa = PBXGroup;
 			children = (
@@ -99,14 +147,10 @@
 		B56DD5F316AAE68C00AD40F3 /* EasyJSWebViewSample */ = {
 			isa = PBXGroup;
 			children = (
+				80440C801EB9C25500DE737F /* XQ */,
 				B56DD61316AAE6D700AD40F3 /* EasyJSWebView */,
 				B56DD5FC16AAE68C00AD40F3 /* AppDelegate.h */,
 				B56DD5FD16AAE68C00AD40F3 /* AppDelegate.m */,
-				B56DD61E16AAE7A200AD40F3 /* MyJSInterface.h */,
-				B56DD61F16AAE7A200AD40F3 /* MyJSInterface.m */,
-				B56DD60516AAE68C00AD40F3 /* ViewController.h */,
-				B56DD60616AAE68C00AD40F3 /* ViewController.m */,
-				B56DD60816AAE68C00AD40F3 /* ViewController_iPhone.xib */,
 				B56DD5F416AAE68C00AD40F3 /* Supporting Files */,
 			);
 			path = EasyJSWebViewSample;
@@ -115,7 +159,7 @@
 		B56DD5F416AAE68C00AD40F3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B56DD61C16AAE73500AD40F3 /* test.html */,
+				80440C8F1EB9C62500DE737F /* xq_test.html */,
 				B56DD5F516AAE68C00AD40F3 /* EasyJSWebViewSample-Info.plist */,
 				B56DD5F616AAE68C00AD40F3 /* InfoPlist.strings */,
 				B56DD5F916AAE68C00AD40F3 /* main.m */,
@@ -196,8 +240,7 @@
 				B56DD60016AAE68C00AD40F3 /* Default.png in Resources */,
 				B56DD60216AAE68C00AD40F3 /* Default@2x.png in Resources */,
 				B56DD60416AAE68C00AD40F3 /* Default-568h@2x.png in Resources */,
-				B56DD60A16AAE68C00AD40F3 /* ViewController_iPhone.xib in Resources */,
-				B56DD61D16AAE73500AD40F3 /* test.html in Resources */,
+				80440C901EB9C62500DE737F /* xq_test.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,11 +253,12 @@
 			files = (
 				B56DD5FA16AAE68C00AD40F3 /* main.m in Sources */,
 				B56DD5FE16AAE68C00AD40F3 /* AppDelegate.m in Sources */,
-				B56DD60716AAE68C00AD40F3 /* ViewController.m in Sources */,
+				80440C8C1EB9C25500DE737F /* XQJSInterface.m in Sources */,
+				80440C8A1EB9C25500DE737F /* NSObject+JSContext.m in Sources */,
+				80440C8B1EB9C25500DE737F /* XQUIWebViewController.m in Sources */,
 				B56DD61916AAE6D700AD40F3 /* easyjs-inject.js in Sources */,
 				B56DD61A16AAE6D700AD40F3 /* EasyJSWebView.m in Sources */,
 				B56DD61B16AAE6D700AD40F3 /* EasyJSWebViewProxyDelegate.m in Sources */,
-				B56DD62016AAE7A300AD40F3 /* MyJSInterface.m in Sources */,
 				FAFC6E1816AD815200DFE50D /* EasyJSDataFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,14 +272,6 @@
 				B56DD5F716AAE68C00AD40F3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B56DD60816AAE68C00AD40F3 /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B56DD60916AAE68C00AD40F3 /* en */,
-			);
-			name = ViewController_iPhone.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

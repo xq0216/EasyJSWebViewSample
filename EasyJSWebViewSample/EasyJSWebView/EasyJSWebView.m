@@ -53,6 +53,12 @@
 	[self.proxyDelegate addJavascriptInterfaces:interface WithName:name];
 }
 
+- (void)injectJS{
+    if (self && self.proxyDelegate && [self.proxyDelegate respondsToSelector:@selector(injectJS:)]) {
+        [self.proxyDelegate injectJS:self];
+    }
+}
+
 - (void) dealloc{
 	[super dealloc];
 	

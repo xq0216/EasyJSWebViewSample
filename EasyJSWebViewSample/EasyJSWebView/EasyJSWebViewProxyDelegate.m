@@ -10,94 +10,88 @@
 #import "EasyJSDataFunction.h"
 #import <objc/runtime.h>
 
-/*
- This is the content of easyjs-inject.js
- Putting it inline in order to prevent loading from files
-*/
-NSString* INJECT_JS = @"window.EasyJS = {\
-__callbacks: {},\
-\
-invokeCallback: function (cbID, removeAfterExecute){\
-var args = Array.prototype.slice.call(arguments);\
-args.shift();\
-args.shift();\
-\
-for (var i = 0, l = args.length; i < l; i++){\
-args[i] = decodeURIComponent(args[i]);\
-}\
-\
-var cb = EasyJS.__callbacks[cbID];\
-if (removeAfterExecute){\
-EasyJS.__callbacks[cbID] = undefined;\
-}\
-return cb.apply(null, args);\
-},\
-\
-call: function (obj, functionName, args){\
-var formattedArgs = [];\
-for (var i = 0, l = args.length; i < l; i++){\
-if (typeof args[i] == \"function\"){\
-formattedArgs.push(\"f\");\
-var cbID = \"__cb\" + (+new Date);\
-EasyJS.__callbacks[cbID] = args[i];\
-formattedArgs.push(cbID);\
-}else{\
-formattedArgs.push(\"s\");\
-formattedArgs.push(encodeURIComponent(args[i]));\
-}\
-}\
-\
-var argStr = (formattedArgs.length > 0 ? \":\" + encodeURIComponent(formattedArgs.join(\":\")) : \"\");\
-\
-var iframe = document.createElement(\"IFRAME\");\
-iframe.setAttribute(\"src\", \"easy-js:\" + obj + \":\" + encodeURIComponent(functionName) + argStr);\
-document.documentElement.appendChild(iframe);\
-iframe.parentNode.removeChild(iframe);\
-iframe = null;\
-\
-var ret = EasyJS.retValue;\
-EasyJS.retValue = undefined;\
-\
-if (ret){\
-return decodeURIComponent(ret);\
-}\
-},\
-\
-inject: function (obj, methods){\
-window[obj] = {};\
-var jsObj = window[obj];\
-\
-for (var i = 0, l = methods.length; i < l; i++){\
-(function (){\
-var method = methods[i];\
-var jsMethod = method.replace(new RegExp(\":\", \"g\"), \"\");\
-jsObj[jsMethod] = function (){\
-return EasyJS.call(obj, method, Array.prototype.slice.call(arguments));\
-};\
-})();\
-}\
-}\
-};";
-
 @implementation EasyJSWebViewProxyDelegate
 
 @synthesize realDelegate;
 @synthesize javascriptInterfaces;
 
+#pragma mark - methods
 - (void) addJavascriptInterfaces:(NSObject*) interface WithName:(NSString*) name{
 	if (! self.javascriptInterfaces){
 		self.javascriptInterfaces = [[NSMutableDictionary alloc] init];
 	}
-	
 	[self.javascriptInterfaces setValue:interface forKey:name];
 }
 
+- (void)injectJS:(UIWebView*)webView{
+    if (! self.javascriptInterfaces){
+        self.javascriptInterfaces = [[NSMutableDictionary alloc] init];
+    }
+
+    NSMutableString* injection = [[NSMutableString alloc] init];
+
+    //inject the javascript interface
+    for(id key in self.javascriptInterfaces) {
+        NSObject* interface = [self.javascriptInterfaces objectForKey:key];
+
+        [injection appendString:@"EasyJS.inject(\""];
+        [injection appendString:key];
+        [injection appendString:@"\", ["];
+
+        unsigned int mc = 0;
+        Class cls = object_getClass(interface);
+        Method * mlist = class_copyMethodList(cls, &mc);
+        for (int i = 0; i < mc; i++){
+            [injection appendString:@"\""];
+            [injection appendString:[NSString stringWithUTF8String:sel_getName(method_getName(mlist[i]))]];
+            [injection appendString:@"\""];
+
+            if (i != mc - 1){
+                [injection appendString:@", "];
+            }
+        }
+
+        free(mlist);
+
+        [injection appendString:@"]);"];
+    }
+
+
+    NSString* js = INJECT_JS;
+    //inject the basic functions first
+    [webView stringByEvaluatingJavaScriptFromString:js];
+    //inject the function interface
+    [webView stringByEvaluatingJavaScriptFromString:injection];
+    
+    [injection release];
+    
+}
+
+#pragma mark - webview delegate
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+
+    if (self.realDelegate && [self.realDelegate respondsToSelector:@selector(webViewDidStartLoad:)])
+    {
+        [self.realDelegate webViewDidStartLoad:webView];
+    }
+    /**
+     不在此处inject，因为reload后，虽然此处inject了，但是方法实际没有注入到最新的JSContext，故reload后交互会失效
+     [self injectJS:webView];
+     */
+}
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-	[self.realDelegate webView:webView didFailLoadWithError:error];
+    if (self.realDelegate && [self.realDelegate respondsToSelector:@selector(webView:didFailLoadWithError:)])
+    {
+        [self.realDelegate webView:webView didFailLoadWithError:error];
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-	[self.realDelegate webViewDidFinishLoad:webView];
+    if (self.realDelegate && [self.realDelegate respondsToSelector:@selector(webViewDidFinishLoad:)])
+    {
+        [self.realDelegate webViewDidFinishLoad:webView];
+    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
@@ -133,7 +127,7 @@ return EasyJS.call(obj, method, Array.prototype.slice.call(arguments));\
 									  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			
 			NSArray* formattedArgs = [argsAsString componentsSeparatedByString:@":"];
-			for (int i = 0, j = 0, l = [formattedArgs count]; i < l; i+=2, j++){
+			for (NSInteger i = 0, j = 0, l = [formattedArgs count]; i < l; i+=2, j++){
 				NSString* type = ((NSString*) [formattedArgs objectAtIndex:i]);
 				NSString* argStr = ((NSString*) [formattedArgs objectAtIndex:i + 1]);
 				
@@ -173,54 +167,17 @@ return EasyJS.call(obj, method, Array.prototype.slice.call(arguments));\
 		return YES;
 	}
 	
-	return [self.realDelegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+    if (self.realDelegate && [self.realDelegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)])
+    {
+        return [self.realDelegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+    }
+    else
+    {
+        return YES;
+    }
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView{
-	[self.realDelegate webViewDidStartLoad:webView];
-	
-	if (! self.javascriptInterfaces){
-		self.javascriptInterfaces = [[NSMutableDictionary alloc] init];
-	}
-	
-	NSMutableString* injection = [[NSMutableString alloc] init];
-	
-	//inject the javascript interface
-	for(id key in self.javascriptInterfaces) {
-		NSObject* interface = [self.javascriptInterfaces objectForKey:key];
-		
-		[injection appendString:@"EasyJS.inject(\""];
-		[injection appendString:key];
-		[injection appendString:@"\", ["];
-		
-		unsigned int mc = 0;
-		Class cls = object_getClass(interface);
-		Method * mlist = class_copyMethodList(cls, &mc);
-		for (int i = 0; i < mc; i++){
-			[injection appendString:@"\""];
-			[injection appendString:[NSString stringWithUTF8String:sel_getName(method_getName(mlist[i]))]];
-			[injection appendString:@"\""];
-			
-			if (i != mc - 1){
-				[injection appendString:@", "];
-			}
-		}
-		
-		free(mlist);
-		
-		[injection appendString:@"]);"];
-	}
-	
-	
-	NSString* js = INJECT_JS;
-	//inject the basic functions first
-	[webView stringByEvaluatingJavaScriptFromString:js];
-	//inject the function interface
-	[webView stringByEvaluatingJavaScriptFromString:injection];
-	
-	[injection release];
-}
-
+#pragma mark - dealloc
 - (void)dealloc{
 	if (self.javascriptInterfaces){
 		[self.javascriptInterfaces release];
